@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "@rainbow-me/rainbowkit/styles.css";
+
+/* ---- Map design tokens to Tailwind v4 color/font utilities ---- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-display: "Cinzel", serif;
+  --font-body: "Cormorant Garamond", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius: 0.25rem;
+
+  --animate-spin-slow: spin-slow 60s linear infinite;
+  --animate-spin-reverse: spin-reverse 60s linear infinite;
+  --animate-aurora: aurora-pulse 7s ease-in-out infinite;
+  --animate-aurora-sweep: aurora-sweep 14s ease-in-out infinite alternate;
+}
+
+/* ---- Theme variables (defaults to dark, matches the original) ---- */
+:root {
+  --radius: 0.25rem;
+  --background: #020202;
+  --foreground: #f2f2f2;
+  --card: #040404b3;
+  --card-foreground: #f2f2f2;
+  --popover: #030303;
+  --popover-foreground: #f2f2f2;
+  --primary: #f2f2f2;
+  --primary-foreground: #020202;
+  --secondary: #0d0d0d;
+  --secondary-foreground: #f2f2f2;
+  --muted: #090909;
+  --muted-foreground: #868686;
+  --accent: #b7b7b7;
+  --accent-foreground: #020202;
+  --destructive: #c53637;
+  --border: rgba(51, 51, 51, 0.6);
+  --input: #121212;
+  --ring: #cecece;
+  --aurora: #e4e4e4;
+  --glow: #b7b7b7;
+  --gradient-aurora: linear-gradient(135deg, #f8f8f8, gray 50%, #e4e4e4);
+  --shadow-glow: 0 0 32px -8px rgba(238, 238, 238, 0.25);
+}
+
+.light {
+  --background: #fafaf8;
+  --foreground: #090908;
+  --card: #fefdfceb;
+  --card-foreground: #0b0b0b;
+  --popover: #ffffff;
+  --popover-foreground: #0b0b0b;
+  --primary: #121212;
+  --primary-foreground: #f8f8f8;
+  --secondary: #ebebe9;
+  --secondary-foreground: #121212;
+  --muted: #efeeec;
+  --muted-foreground: #4d4d4d;
+  --accent: #222222;
+  --accent-foreground: #f8f8f8;
+  --border: rgba(20, 20, 20, 0.18);
+  --input: #e6e5e2;
+  --ring: #2a2a2a;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Custom utilities replicated from the original site ---- */
+.rune-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.text-aurora {
+  background: var(--gradient-aurora);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.mythic-frame {
+  box-shadow: 0 0 60px -10px rgba(238, 238, 238, 0.25);
+  border: 1px solid var(--border);
+}
+
+@keyframes spin-slow {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spin-reverse {
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0); }
+}
+@keyframes aurora-sweep {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(30%); }
+}
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.04); }
+}
+@keyframes ember-drift {
+  0% { opacity: 0; transform: translateY(0) translate(0); }
+  15% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-110vh) translate(20px); }
+}
+
+.animate-spin-slow { animation: var(--animate-spin-slow); }
+.animate-spin-reverse { animation: var(--animate-spin-reverse); }
+.animate-aurora { animation: var(--animate-aurora); }
+.animate-aurora-sweep { animation: var(--animate-aurora-sweep); }

@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import "@rainbow-me/rainbowkit/styles.css";
+
+/* ---- Map design tokens to Tailwind v4 color/font utilities ---- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-popover: var(--popover);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-gold: var(--gold);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-display: "Cinzel", serif;
+  --font-body: "Cormorant Garamond", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius: 0.25rem;
+
+  --animate-spin-slow: spin-slow 80s linear infinite;
+  --animate-spin-reverse: spin-reverse 60s linear infinite;
+  --animate-aurora: aurora-pulse 7s ease-in-out infinite;
+  --animate-aurora-sweep: aurora-sweep 16s ease-in-out infinite alternate;
+}
+
+/* ---- Theme variables (abyssal cosmic water, default dark) ---- */
+:root {
+  --radius: 0.25rem;
+  --background: #04070d;
+  --foreground: #e9f1f2;
+  --card: rgba(8, 16, 24, 0.72);
+  --popover: #060a11;
+  --primary: #5fe0d8;
+  --primary-foreground: #021014;
+  --secondary: #0a131c;
+  --muted: #080d14;
+  --muted-foreground: #7e8c95;
+  --accent: #5fe0d8;
+  --accent-2: #3a9bd9;
+  --gold: #e3c46a;
+  --border: rgba(95, 224, 216, 0.16);
+  --ring: #5fe0d8;
+  --gradient-aurora: linear-gradient(135deg, #7af7ee, #3a9bd9 50%, #b98bff);
+}
+
+.light {
+  --background: #eef5f6;
+  --foreground: #06131a;
+  --card: rgba(255, 255, 255, 0.86);
+  --popover: #ffffff;
+  --primary: #0d8f86;
+  --primary-foreground: #ffffff;
+  --secondary: #dde9ea;
+  --muted: #e3eced;
+  --muted-foreground: #44555c;
+  --accent: #0d8f86;
+  --accent-2: #2a7fd6;
+  --gold: #b58c2c;
+  --border: rgba(13, 100, 95, 0.2);
+  --ring: #0d8f86;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Custom utilities ---- */
+.star-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--accent) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--accent) 9%, transparent) 1px, transparent 1px);
+  background-size: 58px 58px;
+}
+
+.text-aurora {
+  background: var(--gradient-aurora);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.water-btn {
+  background: linear-gradient(180deg, #7af7ee, #3a9bd9);
+  color: #021014;
+  border-color: #7af7ee;
+  box-shadow: 0 0 0 1px rgba(122, 247, 238, 0.25), 0 10px 40px -10px rgba(95, 224, 216, 0.5);
+}
+.water-btn:hover {
+  filter: brightness(1.08);
+}
+
+.nommo-frame {
+  box-shadow: 0 0 70px -12px rgba(95, 224, 216, 0.45);
+  border: 1px solid var(--border);
+}
+
+@keyframes spin-slow {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spin-reverse {
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0); }
+}
+@keyframes aurora-sweep {
+  0% { transform: translateX(-28%); }
+  100% { transform: translateX(28%); }
+}
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.05); }
+}
+@keyframes bubble-rise {
+  0% { opacity: 0; transform: translateY(0) translateX(0); }
+  12% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-108vh) translateX(16px); }
+}
+@keyframes ripple {
+  0% { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.animate-spin-slow { animation: var(--animate-spin-slow); }
+.animate-spin-reverse { animation: var(--animate-spin-reverse); }
+.animate-aurora { animation: var(--animate-aurora); }
+.animate-aurora-sweep { animation: var(--animate-aurora-sweep); }
+
+/* ---- Enhanced background animations ---- */
+@keyframes nebula-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(3%, -2%, 0) scale(1.08); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes godray-sway {
+  0%   { transform: translateX(-4%) rotate(-1deg); opacity: 0.5; }
+  50%  { transform: translateX(4%) rotate(1deg); opacity: 0.85; }
+  100% { transform: translateX(-4%) rotate(-1deg); opacity: 0.5; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes caustic-shift {
+  0%   { background-position: 0% 0%, 0% 0%; }
+  100% { background-position: 120% 60%, -80% -40%; }
+}
+
+.animate-nebula { animation: nebula-drift 26s ease-in-out infinite; }
+.animate-godray { animation: godray-sway 14s ease-in-out infinite; transform-origin: top center; }
+.animate-float { animation: float-y 9s ease-in-out infinite; }
+
+/* Godray beams fanning down from the Sirius star */
+.godrays {
+  background:
+    conic-gradient(
+      from 180deg at 50% -10%,
+      transparent 0deg,
+      color-mix(in oklab, var(--accent) 14%, transparent) 8deg,
+      transparent 16deg,
+      transparent 24deg,
+      color-mix(in oklab, var(--accent-2) 12%, transparent) 32deg,
+      transparent 40deg,
+      transparent 50deg,
+      color-mix(in oklab, var(--accent) 10%, transparent) 58deg,
+      transparent 66deg
+    );
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+/* Caustic water shimmer */
+.caustics {
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--accent) 16%, transparent) 0, transparent 22%),
+    radial-gradient(circle at 70% 60%, color-mix(in oklab, var(--accent-2) 14%, transparent) 0, transparent 26%);
+  background-size: 60% 60%, 70% 70%;
+  filter: blur(28px);
+  animation: caustic-shift 30s linear infinite alternate;
+}
+
+/* Premium character frame: glow + gradient + corner accents */
+.char-frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%),
+    linear-gradient(180deg, #060e16, #03070d);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.8), inset 0 0 60px -30px rgba(95, 224, 216, 0.5);
+}
+.char-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 52%, color-mix(in oklab, var(--background) 94%, transparent));
+  pointer-events: none;
+  z-index: 2;
+}
+.char-frame > img,
+.char-frame > svg {
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s ease;
+}
+.char-frame:hover > img,
+.char-frame:hover > svg {
+  transform: scale(1.06);
+  filter: saturate(1.14) contrast(1.06) brightness(1.04);
+}

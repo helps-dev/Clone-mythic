@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#0b3340"/>
+      <stop offset="55%" stop-color="#061821"/>
+      <stop offset="100%" stop-color="#03070d"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bdfff7"/>
+      <stop offset="50%" stop-color="#5fe0d8"/>
+      <stop offset="100%" stop-color="#2a7fd6"/>
+    </linearGradient>
+    <linearGradient id="tail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a9bd9"/>
+      <stop offset="100%" stop-color="#163a6b"/>
+    </linearGradient>
+    <radialGradient id="star" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#eafffb"/>
+      <stop offset="100%" stop-color="#7af7ee"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7af7ee"/>
+      <stop offset="100%" stop-color="#b98bff"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg)"/>
+
+  <!-- medallion rings -->
+  <circle cx="300" cy="300" r="280" stroke="url(#line)" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="300" cy="300" r="262" stroke="url(#line)" stroke-width="1" stroke-dasharray="2 9" opacity="0.6"/>
+  <g stroke="url(#line)" stroke-width="1.2" opacity="0.45">
+    <!-- tick marks around -->
+    <g>
+      <line x1="300" y1="22" x2="300" y2="44"/>
+      <line x1="300" y1="556" x2="300" y2="578"/>
+      <line x1="22" y1="300" x2="44" y2="300"/>
+      <line x1="556" y1="300" x2="578" y2="300"/>
+    </g>
+  </g>
+
+  <!-- Sirius star halo -->
+  <g filter="url(#soft)" opacity="0.85">
+    <circle cx="300" cy="120" r="46" fill="#5fe0d8" opacity="0.5"/>
+  </g>
+  <path d="M300 60 L312 108 L360 120 L312 132 L300 180 L288 132 L240 120 L288 108 Z" fill="url(#star)"/>
+  <circle cx="300" cy="120" r="8" fill="#ffffff"/>
+
+  <!-- descending light beams -->
+  <g stroke="url(#line)" stroke-width="1" opacity="0.25">
+    <line x1="300" y1="150" x2="240" y2="300"/>
+    <line x1="300" y1="150" x2="360" y2="300"/>
+    <line x1="300" y1="150" x2="300" y2="300"/>
+  </g>
+
+  <!-- twin water serpents flanking -->
+  <path d="M150 260 q40 -50 70 10 q30 60 -10 110 q-40 50 -70 -10" stroke="url(#line)" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round"/>
+  <path d="M450 260 q-40 -50 -70 10 q-30 60 10 110 q40 50 70 -10" stroke="url(#line)" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round"/>
+
+  <!-- ANCESTOR FIGURE -->
+  <g>
+    <!-- head -->
+    <ellipse cx="300" cy="222" rx="34" ry="40" fill="url(#skin)"/>
+    <!-- crest fin -->
+    <path d="M300 178 q-10 -34 0 -50 q10 16 0 50 Z" fill="url(#line)" opacity="0.9"/>
+    <path d="M278 188 q-22 -22 -28 -42 q26 8 38 30 Z" fill="url(#skin)" opacity="0.8"/>
+    <path d="M322 188 q22 -22 28 -42 q-26 8 -38 30 Z" fill="url(#skin)" opacity="0.8"/>
+    <!-- eyes -->
+    <circle cx="288" cy="220" r="4" fill="#03121a"/>
+    <circle cx="312" cy="220" r="4" fill="#03121a"/>
+    <!-- gills -->
+    <path d="M270 232 q-10 6 -2 16 M268 244 q-10 4 -2 14" stroke="#163a6b" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M330 232 q10 6 2 16 M332 244 q10 4 2 14" stroke="#163a6b" stroke-width="2" fill="none" opacity="0.7"/>
+
+    <!-- torso -->
+    <path d="M266 258 q34 24 68 0 q14 60 -2 110 q-32 18 -64 0 q-16 -50 -2 -110 Z" fill="url(#skin)"/>
+    <!-- chest sigil -->
+    <path d="M300 300 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 Z" fill="#eafffb" opacity="0.85"/>
+
+    <!-- arms raised -->
+    <path d="M268 268 q-50 -10 -78 -54 q-6 18 6 34 q26 36 70 44 Z" fill="url(#skin)" opacity="0.95"/>
+    <path d="M332 268 q50 -10 78 -54 q6 18 -6 34 q-26 36 -70 44 Z" fill="url(#skin)" opacity="0.95"/>
+
+    <!-- tail -->
+    <path d="M298 368 q-26 70 -6 140 q8 -10 14 -10 q6 0 14 10 q20 -70 -6 -140 Z" fill="url(#tail)"/>
+    <!-- tail scales -->
+    <g stroke="#5fe0d8" stroke-width="1.2" fill="none" opacity="0.45">
+      <path d="M288 392 q12 8 24 0"/>
+      <path d="M286 420 q14 9 28 0"/>
+      <path d="M286 450 q14 9 28 0"/>
+      <path d="M288 480 q12 8 24 0"/>
+    </g>
+    <!-- caudal fin -->
+    <path d="M300 504 q-44 30 -64 70 q40 -10 64 -28 q24 18 64 28 q-20 -40 -64 -70 Z" fill="url(#tail)" opacity="0.92"/>
+    <g stroke="#5fe0d8" stroke-width="1" opacity="0.5">
+      <line x1="300" y1="520" x2="262" y2="566"/>
+      <line x1="300" y1="520" x2="300" y2="572"/>
+      <line x1="300" y1="520" x2="338" y2="566"/>
+    </g>
+  </g>
+
+  <!-- rising bubbles -->
+  <g fill="#bdfff7" opacity="0.7">
+    <circle cx="210" cy="430" r="4"/>
+    <circle cx="196" cy="392" r="3"/>
+    <circle cx="402" cy="450" r="5"/>
+    <circle cx="392" cy="408" r="3"/>
+    <circle cx="420" cy="370" r="2.5"/>
+    <circle cx="184" cy="352" r="2.5"/>
+  </g>
+</svg>
