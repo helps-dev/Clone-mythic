@@ -74,7 +74,10 @@ export default function Dao() {
           const pct = Math.round((p.forVotes / total) * 100);
           const myVote = voted[p.id];
           return (
-            <div key={p.id} className="border border-border/60 bg-card p-6">
+            <div key={p.id} className="relative border border-border/60 bg-card p-6 pl-7 transition hover:border-accent/50">
+              {p.status === "Active" && (
+                <span className="absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-[#7af7ee] to-[#3a9bd9]" />
+              )}
               <div className="flex items-center justify-between gap-4">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-mono">{p.id}</span>
                 <span

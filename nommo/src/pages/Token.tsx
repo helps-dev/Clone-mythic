@@ -54,8 +54,17 @@ export default function Token() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative grid place-items-center order-2 lg:order-1">
-            <div className="absolute inset-10 rounded-full bg-accent/10 blur-3xl animate-aurora" />
-            <div className="relative w-full max-w-sm aspect-square rounded-full nommo-frame bg-background/60 p-8">
+            <div className="absolute inset-6 rounded-full bg-accent/15 blur-3xl animate-aurora" />
+            <div
+              className="absolute inset-2 rounded-full opacity-70 animate-spin-slow"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, rgba(122,247,238,0.7), rgba(58,155,217,0.15), rgba(185,139,255,0.6), rgba(122,247,238,0.7))",
+                maskImage: "radial-gradient(closest-side, transparent 95%, black 96%)",
+                WebkitMaskImage: "radial-gradient(closest-side, transparent 95%, black 96%)",
+              }}
+            />
+            <div className="relative w-full max-w-sm aspect-square rounded-full nommo-frame bg-background/60 p-8 animate-float">
               <Sigil className="w-full h-full" />
             </div>
           </div>

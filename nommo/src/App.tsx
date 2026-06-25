@@ -5,6 +5,7 @@ import Forge from "./pages/Forge";
 import Docs from "./pages/Docs";
 import Dao from "./pages/Dao";
 import Token from "./pages/Token";
+import Vessel from "./pages/Vessel";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/docs" element={<Docs />} />
         <Route path="/dao" element={<Dao />} />
         <Route path="/token" element={<Token />} />
+        <Route path="/vessel/:variant" element={<Vessel />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

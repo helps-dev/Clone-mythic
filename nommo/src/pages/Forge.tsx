@@ -96,9 +96,16 @@ export default function Forge() {
           <div className="relative">
             <div className="sticky top-28 border border-border/60 bg-card p-8">
               <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-display">Vessel Preview</span>
-              <div className="mt-6 grid place-items-center">
-                <div className="relative w-full max-w-xs aspect-square rounded-full nommo-frame overflow-hidden bg-background/60">
-                  <VesselArt variant={archetype.toLowerCase() as Variant} className="w-full h-full object-cover" />
+              <div className="mt-6">
+                <div className="group char-frame relative aspect-[3/4] w-full rounded-sm">
+                  <VesselArt variant={archetype.toLowerCase() as Variant} className="absolute inset-0 w-full h-full object-cover z-0" />
+                  <span className="absolute top-2 left-2 h-3 w-3 border-t border-l border-accent/70 z-10" />
+                  <span className="absolute top-2 right-2 h-3 w-3 border-t border-r border-accent/70 z-10" />
+                  <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-accent/70 z-10" />
+                  <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-accent/70 z-10" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+                    <span className="font-display font-semibold tracking-widest uppercase text-sm">{archetype}</span>
+                  </div>
                 </div>
               </div>
               <dl className="mt-8 divide-y divide-border/60 border-t border-b border-border/60 text-sm font-body">

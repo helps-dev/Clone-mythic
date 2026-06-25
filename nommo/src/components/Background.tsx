@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 export default function Background() {
+  // Optional photographic base layer — auto-used when the generated
+  // cosmic background exists (public/characters/cosmic-bg.png), otherwise
+  // we fall back to the procedural CSS/SVG scene below.
+  const [photoOk, setPhotoOk] = useState(true);
+
   const bubbles = Array.from({ length: 26 }, (_, i) => ({
     left: `${(i * 37) % 100}%`,
     size: 2 + (i % 5),
@@ -32,6 +39,23 @@ export default function Background() {
             "radial-gradient(140% 100% at 50% -20%, #0a2b38 0%, #061721 38%, #03070d 72%, #02050a 100%)",
         }}
       />
+
+      {/* optional photographic cosmic base (auto-detected) */}
+      <img
+        src="/characters/cosmic-bg.png"
+        alt=""
+        onError={() => setPhotoOk(false)}
+        className={
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 " +
+          (photoOk ? "opacity-60" : "opacity-0")
+        }
+      />
+      {photoOk && (
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(3,7,13,0.4), rgba(3,7,13,0.78))" }}
+        />
+      )}
 
       {/* drifting nebula clouds */}
       <div

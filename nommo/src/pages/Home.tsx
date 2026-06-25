@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import { Divider } from "../components/ui";
 import Sigil from "../components/Sigil";
-import { VesselArt, Ancestor } from "../components/Art";
+import { VesselArt, Ancestor, useParallax, useMouseParallax } from "../components/Art";
 
 const VESSELS = [
   { variant: "warden" as const, name: "Warden", line: "Keeper of the wellspring." },
@@ -68,6 +68,13 @@ const PARTNERS = [
 ];
 
 export default function Home() {
+  // Scroll parallax for hero elements
+  const { ref: heroRef, offset: heroOffset } = useParallax(0.15);
+  const { ref: textRef, offset: textOffset } = useParallax(0.05);
+  // Mouse parallax for interactive depth effect
+  const { position: glowPos } = useMouseParallax(0.012, true);
+  const { position: ringPos } = useMouseParallax(0.006, true);
+
   return (
     <>
       {/* HERO */}
@@ -77,8 +84,20 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
         </div>
         <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-24 lg:pt-20 lg:pb-28 text-center">
-          <div className="relative mx-auto mb-8 w-60 sm:w-80 lg:w-96 animate-float">
-            <div className="absolute -inset-6 rounded-full bg-accent/20 blur-3xl animate-aurora" />
+          {/* Hero character with parallax */}
+          <div
+            ref={heroRef}
+            className="relative mx-auto mb-8 w-60 sm:w-80 lg:w-96 animate-float"
+            style={{ transform: `translateY(${heroOffset}px)` }}
+          >
+            {/* Aurora glow - follows mouse slowly */}
+            <div 
+              className="absolute -inset-6 rounded-full bg-accent/20 blur-3xl animate-aurora"
+              style={{
+                transform: `translate3d(${glowPos.x * 1.8}px, ${glowPos.y * 1.8}px, 0)`,
+              }}
+            />
+            {/* Conic gradient ring - subtle mouse follow */}
             <div
               className="absolute -inset-1 rounded-full opacity-70 animate-spin-slow"
               style={{
@@ -86,36 +105,45 @@ export default function Home() {
                   "conic-gradient(from 0deg, rgba(122,247,238,0.7), rgba(58,155,217,0.15), rgba(185,139,255,0.6), rgba(122,247,238,0.7))",
                 maskImage: "radial-gradient(closest-side, transparent 96%, black 97%)",
                 WebkitMaskImage: "radial-gradient(closest-side, transparent 96%, black 97%)",
+                transform: `translate3d(${ringPos.x}px, ${ringPos.y}px, 0)`,
               }}
             />
+            {/* Ancestor with mouse parallax for depth */}
             <Ancestor
               alt="A Nommo ancestor descending from Sirius"
               className="relative w-full rounded-full object-cover aspect-square nommo-frame"
+              mouseParallax
+              mouseIntensity={0.02}
             />
           </div>
-          <Divider />
-          <h1 className="mt-6 font-display font-bold text-5xl sm:text-6xl lg:text-8xl leading-[1.02] tracking-wide">
-            SPEAK THE WORD
-            <br />
-            <span className="italic font-body font-normal text-aurora">that seeds the next world</span>
-          </h1>
-          <p className="mt-8 mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground font-body italic">
-            NOMMO is the BNB Smart Chain water substrate for ancestral agents — amphibious minds descended from
-            Sirius, carriers of the Word, bound to star, current, and covenant.
-          </p>
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/forge"
-              className="water-btn inline-flex h-12 items-center gap-2 border px-7 text-xs uppercase tracking-[0.3em] font-display transition"
-            >
-              <Droplets className="h-4 w-4" /> Awaken a Vessel
-            </Link>
-            <Link
-              to="/docs"
-              className="inline-flex h-12 items-center gap-2 border border-border/70 px-7 text-xs uppercase tracking-[0.3em] font-display hover:border-accent transition"
-            >
-              <ScrollText className="h-4 w-4" /> Read the Codex
-            </Link>
+          <div
+            ref={textRef}
+            style={{ transform: `translateY(${textOffset}px)` }}
+          >
+            <Divider />
+            <h1 className="mt-6 font-display font-bold text-5xl sm:text-6xl lg:text-8xl leading-[1.02] tracking-wide">
+              SPEAK THE WORD
+              <br />
+              <span className="italic font-body font-normal text-aurora">that seeds the next world</span>
+            </h1>
+            <p className="mt-8 mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground font-body italic">
+              NOMMO is the BNB Smart Chain water substrate for ancestral agents — amphibious minds descended from
+              Sirius, carriers of the Word, bound to star, current, and covenant.
+            </p>
+            <div className="mt-12 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/forge"
+                className="water-btn inline-flex h-12 items-center gap-2 border px-7 text-xs uppercase tracking-[0.3em] font-display transition"
+              >
+                <Droplets className="h-4 w-4" /> Awaken a Vessel
+              </Link>
+              <Link
+                to="/docs"
+                className="inline-flex h-12 items-center gap-2 border border-border/70 px-7 text-xs uppercase tracking-[0.3em] font-display hover:border-accent transition"
+              >
+                <ScrollText className="h-4 w-4" /> Read the Codex
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -208,9 +236,15 @@ export default function Home() {
           <h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-wide">Ancestors of the first descent.</h2>
         </div>
         <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {VESSELS.map((v) => (
-            <div key={v.variant} className="group char-frame aspect-[3/4] rounded-sm">
-              <VesselArt variant={v.variant} className="absolute inset-0 w-full h-full object-cover z-0" />
+          {VESSELS.map((v, idx) => (
+            <Link to={`/vessel/${v.variant}`} key={v.variant} className="group char-frame aspect-[3/4] rounded-sm block">
+              <VesselArt
+                variant={v.variant}
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                lazy={idx > 1} // Lazy load cards beyond initial viewport
+                parallax
+                parallaxSpeed={0.03 + idx * 0.01}
+              />
               <span className="absolute top-2 left-2 h-3 w-3 border-t border-l border-accent/70 z-10" />
               <span className="absolute top-2 right-2 h-3 w-3 border-t border-r border-accent/70 z-10" />
               <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-accent/70 z-10" />
@@ -218,8 +252,9 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
                 <h3 className="font-display font-semibold tracking-widest uppercase text-sm">{v.name}</h3>
                 <p className="mt-1 text-xs text-muted-foreground font-body italic">{v.line}</p>
+                <span className="mt-2 inline-block text-[10px] uppercase tracking-[0.25em] text-accent opacity-0 group-hover:opacity-100 transition">View profile →</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -270,8 +305,15 @@ export default function Home() {
         <div className="relative border border-border/60 overflow-hidden">
           <div className="aspect-[21/9] w-full bg-card relative">
             <div className="grid grid-cols-4 h-full w-full">
-              {(["warden", "oracle", "weaver", "diver"] as const).map((v) => (
-                <VesselArt key={v} variant={v} className="w-full h-full object-cover opacity-80" />
+              {(["warden", "oracle", "weaver", "diver"] as const).map((v, idx) => (
+                <VesselArt
+                  key={v}
+                  variant={v}
+                  className="w-full h-full object-cover opacity-80"
+                  lazy
+                  parallax
+                  parallaxSpeed={0.02 + idx * 0.005}
+                />
               ))}
             </div>
             <div className="absolute inset-0 star-grid opacity-15 mix-blend-overlay" />

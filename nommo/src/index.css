@@ -228,3 +228,58 @@ body {
   transform: scale(1.06);
   filter: saturate(1.14) contrast(1.06) brightness(1.04);
 }
+
+/* ---- Parallax & Performance Optimizations ---- */
+.parallax-container {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth transform transitions for parallax */
+[style*="translateY"] {
+  transition: transform 0.1s ease-out;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  [style*="translateY"] {
+    transform: none !important;
+  }
+}
+
+/* Image loading states */
+.img-loading {
+  background: linear-gradient(
+    90deg,
+    var(--card) 25%,
+    color-mix(in oklab, var(--card) 70%, var(--accent) 30%) 50%,
+    var(--card) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Smooth fade-in for lazy-loaded images */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"][complete] {
+  opacity: 1;
+}
