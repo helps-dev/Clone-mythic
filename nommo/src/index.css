@@ -273,13 +273,4 @@ body {
   100% { background-position: -200% 0; }
 }
 
-/* Smooth fade-in for lazy-loaded images */
-img[loading="lazy"] {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-img[loading="lazy"].loaded,
-img[loading="lazy"][complete] {
-  opacity: 1;
-}
+/* Lazy-loaded images: no global opacity override — React handles fade-in via state */

@@ -136,14 +136,14 @@ export function VesselArt({
   const imgStyle = parallax ? { transform: `translateY(${offset}px)` } : undefined;
 
   return (
-    <div ref={ref} className={`relative ${parallax ? "overflow-hidden" : ""}`}>
+    <div ref={ref} className={`${className} ${parallax ? "overflow-hidden" : ""}`}>
       {isLoading && (
-        <div className={`absolute inset-0 bg-card/50 animate-pulse ${className}`} />
+        <div className="absolute inset-0 bg-card/50 animate-pulse" />
       )}
       <img
         src={src}
         alt={`${variant} vessel`}
-        className={`${className} transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
         style={imgStyle}
         loading={lazy ? "lazy" : "eager"}
         decoding="async"
