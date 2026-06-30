@@ -1,0 +1,275 @@
+@import "tailwindcss";
+@import "@rainbow-me/rainbowkit/styles.css";
+
+/* ============================================
+   NEXUS — Professional Sci-Fi Design System
+   ============================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Exo 2", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius: 0.75rem;
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-rotate-slow: rotate-slow 60s linear infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+/* ---- Refined Color Palette ----
+   Deep space navy base + single teal accent with subtle violet support.
+   Restrained, premium, high-contrast. */
+:root {
+  --background: #060810;
+  --foreground: #f0f4fc;
+  --card: rgba(16, 20, 34, 0.6);
+  --card-foreground: #e6ebf5;
+  --primary: #34e0c4;
+  --primary-foreground: #04120f;
+  --secondary: #11162a;
+  --muted: #0d1120;
+  --muted-foreground: #8b94ad;
+  --accent: #34e0c4;
+  --accent-violet: #8b7cff;
+  --border: rgba(139, 148, 173, 0.12);
+  --ring: #34e0c4;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection {
+  background: rgba(52, 224, 196, 0.25);
+  color: #fff;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 148, 173, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 224, 196, 0.4);
+}
+
+/* ---- Typography helpers ---- */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #ffffff 20%, #34e0c4 60%, #8b7cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-accent-glow {
+  color: var(--accent);
+  text-shadow: 0 0 24px rgba(52, 224, 196, 0.4);
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, #34e0c4, #2bb3a0);
+  color: #04120f;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 24px -6px rgba(52, 224, 196, 0.5);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px -6px rgba(52, 224, 196, 0.65);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-ghost:hover {
+  border-color: rgba(52, 224, 196, 0.4);
+  background: rgba(52, 224, 196, 0.06);
+  transform: translateY(-2px);
+}
+
+/* ---- Cards ---- */
+.card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  border-color: rgba(52, 224, 196, 0.25);
+  background: rgba(20, 25, 42, 0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* Subtle gradient top-border accent on cards */
+.card-accent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(52, 224, 196, 0.5), transparent);
+}
+
+/* ---- Badge / Pill ---- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+/* ---- Glass panel ---- */
+.glass {
+  background: rgba(16, 20, 34, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* ---- Backgrounds ---- */
+.grid-fade {
+  background-image:
+    linear-gradient(rgba(139, 148, 173, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 148, 173, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- Divider ---- */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ---- Animations ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-float { animation: var(--animate-float); }
+.animate-rotate-slow { animation: var(--animate-rotate-slow); }
+.animate-pulse-soft { animation: var(--animate-pulse-soft); }
+
+/* ---- Shimmer skeleton ---- */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02) 25%,
+    rgba(52, 224, 196, 0.06) 50%,
+    rgba(255, 255, 255, 0.02) 75%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ---- Marquee track ---- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

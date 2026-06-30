@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffcc"/>
+      <stop offset="50%" stop-color="#7b2dff"/>
+      <stop offset="100%" stop-color="#ff00aa"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer hexagon -->
+  <polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="none" stroke="url(#neon)" stroke-width="2" filter="url(#glow)"/>
+  <!-- Inner alien eye -->
+  <ellipse cx="32" cy="32" rx="14" ry="18" fill="none" stroke="url(#neon)" stroke-width="2" filter="url(#glow)"/>
+  <!-- Pupil -->
+  <ellipse cx="32" cy="32" rx="6" ry="10" fill="url(#neon)"/>
+  <!-- Cross lines -->
+  <line x1="32" y1="14" x2="32" y2="50" stroke="url(#neon)" stroke-width="1" opacity="0.5"/>
+  <line x1="18" y1="32" x2="46" y2="32" stroke="url(#neon)" stroke-width="1" opacity="0.5"/>
+</svg>
